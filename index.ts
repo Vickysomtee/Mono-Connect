@@ -18,7 +18,7 @@ app.use((req, res) => {
     .json({ status: "error", message: `${req.method} ${req.originalUrl} not found` });
 });
 
-mongoose.connect('mongodb://localhost:27017/mono').then(() => { console.log('DB connected') }).catch(e => {
+mongoose.connect('mongodb+srv://monoU:MoNoUAdmin@monoservice.j2eta4q.mongodb.net/?retryWrites=true&w=majority').then(() => { console.log('DB connected') }).catch(e => {
   console.log(e)
 })
 
