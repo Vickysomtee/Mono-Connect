@@ -6,6 +6,7 @@ export interface IUser {
   lastName: String;
   email: String;
   password: String;
+  mono_id: String;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -15,7 +16,8 @@ const userSchema = new Schema(
     firstName: {type: String, required: true},
     lastName: {type: String, required: true},
     email: {type: String, required: true},
-    password: {type: String, required: true}
+    password: {type: String, required: true},
+    mono_id: {type: String}
   },
   {
     timestamps: true

@@ -16,7 +16,7 @@ const register = async (req: Request, res: Response, next: NextFunction) => {
 
     user = await User.create({ firstName, lastName, email, password })
 
-    return res.status(200).json({ status: "success", message: "Registration Successful"});
+    return res.status(200).json({ status: "success", message: "Registration Successful", data: {user, token: jwt.sign({id: user.id}, process.env.JWT_SECRET, {expiresIn: process.env.JWT_EXPIRY})}});
   } catch (error) {
     next(error);
   }

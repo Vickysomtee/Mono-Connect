@@ -5,7 +5,8 @@ import express from 'express';
 import { json } from 'body-parser';
 import cors from 'cors'
 import mongoose from 'mongoose';
-import router from "./src/routes/auth.routes"
+import authRouter from "./src/routes/auth.routes"
+import userRouter from "./src/routes/user.routes"
 
 const app = express();
 
@@ -13,7 +14,8 @@ app.use(json());
 app.use(cors({ origin: '*' }))
 
 app.use('/health', (_, res) => res.sendStatus(200))
-app.use('/v1', router)
+app.use('/v1', authRouter, userRouter)
+app.use
 app.use((req, res) => {
   return res
     .status(404)
