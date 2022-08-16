@@ -32,7 +32,7 @@ const login = async (req: Request, res: Response, next: NextFunction) => {
 
     if (!user || !bcrypt.compareSync(password, user.password)) return res.status(400).json({status: "error", message: "Invalid login credentials"})
 
-    return res.status(200).json({status: "success", message: "Login Successful", data: {user, token: jwt.sign({id: user.id}, 'hddhdhedhdudj', {expiresIn: 3000})}})
+    return res.status(200).json({status: "success", message: "Login Successful", data: {user, token: jwt.sign({id: user.id}, process.env.JWT_SECRET, {expiresIn: process.env.JWT_EXPIRY})}})
   } catch (error) {
     next(error);
   }
