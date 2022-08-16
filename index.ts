@@ -1,5 +1,5 @@
 import * as dotenv from 'dotenv';
-dotenv.config({ path: __dirname + '/.env' });
+dotenv.config();
 
 import express from 'express';
 import { json } from 'body-parser';
@@ -18,10 +18,10 @@ app.use((req, res) => {
     .json({ status: "error", message: `${req.method} ${req.originalUrl} not found` });
 });
 
-mongoose.connect('mongodb+srv://monoU:MoNoUAdmin@monoservice.j2eta4q.mongodb.net/?retryWrites=true&w=majority').then(() => { console.log('DB connected') }).catch(e => {
+mongoose.connect(process.env.MONGO_URI).then(() => { console.log('DB connected') }).catch(e => {
   console.log(e)
 })
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log(`Server is running on Port ${process.env.PORT}`)
 })
