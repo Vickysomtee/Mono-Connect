@@ -14,7 +14,7 @@ const validateUser = async (req: Request, res: Response, next: NextFunction) => 
     if (!token) return res.status(401).json({ status: "error", message: "Unauthorized" })
 
     //Verify the damn Token
-    const verifiedToken = jwt.verify(token, 'hddhdhedhdudj')
+    const verifiedToken = jwt.verify(token, process.env.JWT_SECRET)
     req.user = verifiedToken;
     req.token = token
     next()
